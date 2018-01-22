@@ -1,0 +1,239 @@
+"0","knitr::kable(correctionData, ""html"") %>%
+  kable_styling(bootstrap_options = ""striped"", full_width = F)
+"
+"1","<table class=""table table-striped"" style=""width: auto !important; margin-left: auto; margin-right: auto;"">
+ <thead>
+  <tr>
+   <th style=""text-align:right;""> p_values </th>
+   <th style=""text-align:right;""> Bonferroni </th>
+   <th style=""text-align:right;""> BH </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:right;""> 0.0000008 </td>
+   <td style=""text-align:right;""> 0.0000345 </td>
+   <td style=""text-align:right;""> 0.0000345 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0000636 </td>
+   <td style=""text-align:right;""> 0.0028616 </td>
+   <td style=""text-align:right;""> 0.0014308 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0005177 </td>
+   <td style=""text-align:right;""> 0.0232976 </td>
+   <td style=""text-align:right;""> 0.0077659 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0011936 </td>
+   <td style=""text-align:right;""> 0.0537127 </td>
+   <td style=""text-align:right;""> 0.0134282 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0061621 </td>
+   <td style=""text-align:right;""> 0.2772962 </td>
+   <td style=""text-align:right;""> 0.0522047 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0069606 </td>
+   <td style=""text-align:right;""> 0.3132279 </td>
+   <td style=""text-align:right;""> 0.0522047 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0424270 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.2727449 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0795173 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.3729519 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0828998 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.3729519 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0951098 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.3729519 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0977697 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.3729519 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.0994538 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.3729519 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.1166338 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.4037323 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.1433134 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.4578253 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.1526084 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.4578253 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.1670266 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.4615086 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.1743477 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.4615086 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.1917963 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.4623276 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.1952050 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.4623276 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.2403965 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.5408922 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.2830418 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.5852803 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.2871432 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.5852803 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.2991433 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.5852803 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.3175587 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.5954225 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.3942850 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7097130 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.4234325 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7104156 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.4267310 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7104156 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.4541766 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7104156 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.4853374 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7104156 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.5006398 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7104156 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.5113853 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7104156 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.5188521 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7104156 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.5209715 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7104156 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.5564406 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7207352 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.5605718 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7207352 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.6227656 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.7784570 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.6707208 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.8157415 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.7564426 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.8659315 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.7649813 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.8659315 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.7697169 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.8659315 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.8441110 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.9264632 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.8843562 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.9271206 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.8859152 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.9271206 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.9793702 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.9994341 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 0.9994341 </td>
+   <td style=""text-align:right;""> 1.0000000 </td>
+   <td style=""text-align:right;""> 0.9994341 </td>
+  </tr>
+</tbody>
+</table>"

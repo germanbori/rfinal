@@ -1,0 +1,497 @@
+---
+title: "Final project of R programming"
+author: "Borbala German"
+date: '2018 január 21 '
+output:
+  html_document: default
+---
+<style type="text/css"> 
+
+body{ /* Normal  */ 
+      font-size: 16px; 
+  } 
+td {  /* Table  */ 
+  font-size: 10px; 
+} 
+h1.title { 
+  font-size: 40px; 
+  color: DarkRed; 
+} 
+h1 { /* Header 1 */ 
+  font-size: 30px; 
+  color: DarkBlue; 
+} 
+h2 { /* Header 2 */ 
+    font-size: 25px; 
+  color: DarkBlue; 
+} 
+h3 { /* Header 3 */ 
+  font-size: 20px; 
+  font-family: "Times New Roman", Times, serif; 
+  color: DarkBlue; 
+} 
+code.r{ /* Code block */ 
+    font-size: 12px; 
+} 
+pre { /* Code block - determines code spacing between lines */ 
+    font-size: 14px; 
+} 
+</style> 
+
+```{r setup, include=FALSE, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE, echo=FALSE}
+chooseCRANmirror(graphics=FALSE, ind=1)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Associations between the executive functions and event related potentials
+
+
+## Abstract  
+In this study I examined the possible relationships between ERP component called MMN and executive functions (EF). Only a few studies examined this relation and found associations in behavioral and neural level as well. This study examined MMN components evoked by native word stress violations. Next to the EEG recording while neuropsychological tests were used to measure performance of executive functions. It was an exploratory analysis using three different method: correlation analysis, linear regression and permutation-based analysis. My aim was to explore the dataset with the help of different type of analysis and prove that different kind of assumptions and corrections could affect our results. During the three method one result showed reliable between the MMN effect variable and the working memory capacity, which could mean that processing native word stress violation possibly associated with the capacity of the working memory.
+
+
+
+## Exploratory analysis  
+
+### Description of the dataset 
+  
+The dataset is coming from an ongoing research project of my PhD research.  
+  
+For the analysis nine variables were used: two electrophysiological variables and seven neuropsychological variables.   
+
+The EEG were recorded during an odd-ball paradigmn with the help of pseudowords and the examined time windows were selected by a TANOVA. The interest of my hypothesis was to examine the possible relationship between the executive functions measured by neuropsychological tests and the MMN responses for the native word stress. In the appropriate time window (378 -444 ms) hu_str1_diff_2nd variable as MMN effect was calculated as the mean amplitude of the ERP response for HU S1 (stress on the first sylabble) as deviant stimuli minus the mean amplitude for HU S1 as standard stimuli. The hu_str2_diff_2nd variable as MMN effect was calculated as the mean amplitude of the ERP responses for HU S2 (stress on the second sylabble) as deviant stimuli minus the mean amplitude for HU S2 as standard stimuli. These two variables show the magnitude of the evoked potential (MMN) for the deviant as compared to the stimuli related to the standard stimuli.   
+
+To examine the main components of executive functions – inhibition, switching, and working memory (Miyake et al., 2000) –, we used auditory Go/No-Go task, Counting span task, and Verbal Fluency task. We used the discriminability index (Pr) (Hershey et al., 2010) from Go/No-Go task what was calculated as the ratio of hits (correct responses for Go trials) and false alarms (responses for the No-Go trials). From Counting span task we calculated the Working memory capacity the mean of performance (Cs_avg). From the verbal fluency task we used qualitative and quantitative variables, as qualitative: the number of clusters (including phonemic and semantic clusters, as well; avg_groupnumb), the size of the clusters (number of words in a cluster minus one according to the criterion of Troyer et al. (1997);avg_groupsize), sharp switching (avg_sharpswitch), and cluster switching averaged (avg_clustswitch) across the different subtasks were calculated for each participan and as quantitative variable: all the number of all generated words during the test (fluency).  
+
+All variables are numeric.
+
+It is an exploratory data analysis, so I don't investigated a specific hypothesis. I conducted a correlation analysis and the adequate corrections (Bonferroni correction and Benjamini-Hochberg method). After this I ran a linear regression analysis to discover the possible models which could explain the MMN variables.  After these type of analysis I tried to find a solution which is more robust, so I ran a permutation based statistics on the correlation coefficients to find the reliable results. 
+
+### Exploratory data analysis
+
+```{r Calling in, echo=FALSE,warning=FALSE,message=FALSE}
+setwd("c:/Users/Bori/Desktop/R programozás/final") # set the work directory
+data <- read.csv ("data.csv")
+library(magrittr)
+library(tidyverse) 
+library(psych)
+library(xtable)
+library(car)
+library(ggplot2)
+library(lme4)
+library(reshape2)
+library(corrplot)
+library(Hmisc)
+library(tidyverse) 
+library(dplyr)
+library(magrittr)
+library(broom)
+library(stargazer)
+library(ggfortify)
+library('CCP')
+library(RVAideMemoire)
+library(knitr)
+library(kableExtra)
+```
+
+
+For exploratory data analysis the dataset was called in and a descriptive analysis was ran. With the help of the table  the mean, sd, min and max values were checked to exmanie the misswritting or other mistakes and see the ranges of the variables.
+
+
+```{r descriptive stat, warning=FALSE, error=FALSE,message=FALSE}
+# Ask for basic descriptive statistical values
+descriptive <- describe(data)
+print(descriptive)
+
+```  
+
+
+Histograms and scatter plots were plotted to examine the distribution of the variables, and boxplots to see the possible outliers.
+Two separate plot table were created, on the first exploratory plot I illustrated the MMN variables.
+
+
+```{r exploratory figures of MMN, fig.width=14, fig.height=14, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+# with par function multiple plot could be attached in one figure
+attach(data) 
+
+par(mfrow= c(3,2)) 
+hist(hu_str1_diff_2nd) 
+hist(hu_str2_diff_2nd) 
+boxplot(hu_str1_diff_2nd)
+boxplot(hu_str2_diff_2nd) 
+plot(hu_str1_diff_2nd) 
+plot(hu_str2_diff_2nd) 
+     
+```    
+
+
+In this plot the distribution of the two MMN variables seems normal. A few outliars were observed but because of the limited number of participants the data of them was kept.
+  
+On the second the exploratory data analysis of the EF variables were demonstrated. 
+
+
+```{r exploratory figures of EF, fig.width=14, fig.height=12, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+
+par(mfrow= c(3,7)) 
+
+hist(avg_groupsize) 
+hist(avg_clustswitch)
+hist(avg_sharpswitch) 
+hist(avg_groupnumb)
+hist(Cs_avg) 
+hist(Pr) 
+hist(fluency) 
+boxplot(avg_groupsize) 
+boxplot(avg_clustswitch)
+boxplot(avg_sharpswitch)
+boxplot(avg_groupnumb)
+boxplot(Cs_avg) 
+boxplot(Pr)
+boxplot(fluency)
+plot(avg_groupsize) 
+plot(avg_clustswitch)
+plot(avg_sharpswitch)
+plot(avg_groupnumb)
+plot(Cs_avg) 
+plot(Pr)
+plot(fluency)
+
+dev.off()
+```   
+
+
+On the second plot the distribution of the EF variables didn't show normality, so
+to check the normality of the variables statistically  Shapiro-Wilks tests were conducted to each variables.   
+
+
+```{r Shapiro-Wilks, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+#normality checking, get the result and converting to dataframe
+lshap <- lapply(data, shapiro.test)
+lres <- sapply(lshap, `[`, c("statistic","p.value"))
+shapiro_results <- as.data.frame(lres)
+knitr::kable(lres, "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+```  
+  
+  
+As the table shows one of the variables (Pr) differ significantly *F* = .928,  *p* = .043 from the normal distribution, that is why  non-parametric test was used for the further analysis. 
+
+
+## Correlation analysis
+
+To discover the possible relationships between the variables I created two scatterplot seperately for the two MMN variables. 
+
+
+```{r scatterplot HU S1, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+#Creatiing the dataset for hu_str1_diff_2nd
+data2 = data[ , c(2,4:10)]
+#Make the plot
+plot(data2 , pch=20 , cex=1.5 , col=rgb(0.5, 0.8, 0.9, 0.7)) 
+```
+
+```{r scatterplot HUS2, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+#Creating the dataset for hu_str2_diff_2nd
+data1=data[ , c(3,4:10)]
+#Make the plot
+plot(data1 , pch=20 , cex=1.5 , col=rgb(0.5, 0.8, 0.9, 0.7))
+
+```  
+ 
+  
+Visually no linear relation between the variables were observed. Spearman analysis were conducted using the all dataset (which could be helpful checking homeoscedasticity for linear regression later). The id variable was excluded from column 1. The correlation matrix were calculated and created seperately an *r* and a *p* matrix. After  the *p* matrix was plotted to show which variables show significant relation. 
+
+
+```{r p matrix, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+# correlation analysis
+correl<-cor(data, use = "complete.obs", method = "spearman")
+
+newdata <- data [c(2:10)]
+newres <- rcorr(as.matrix(data))
+
+r_matrix <- newres$r #creating r matrix containing r values
+p_matrix <- newres$P #creating p matrix containing p values
+knitr::kable(p_matrix, "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F) # p value matrix plot
+```   
+
+  
+For the easier understanding and visualization two correlation matrix figures were created:
+The first plot shows the variables and the correlations between them. Where there is a cube in the cell there is a significant correlation between the two variables. The color of the cube shows the direction of the raltionship, and the shades and the size of the cubes shows the strenght of the relationship.
+
+
+```{r corr_matrix_plot, warning=FALSE, error=FALSE, message=FALSE, comment=FALSE}
+corrplot(newres$r, method = c("square"), 
+         order="original", 
+         hclust.method = "average", addrect = 6, rect.col = "black", rect.lwd = 1, 
+         type="upper", diag = F, tl.col = "black", tl.srt = 45,
+         p.mat = newres$P, sig.level = 0.05, insig = "blank")
+```  
+
+
+As we can see, only one relation is significant of my interest in this case, between hu_str1_diff_2nd and Cs_avg *p* = .006. 
+
+
+The second plot shows the correlation coefficients at the case of significant results.
+
+
+```{r corr_matrix_plot2, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+corrplot(newres$r, method = c("number"), type="upper", order="original", diag = F, tl.col = "black",  p.mat = newres$P, sig.level = 0.05, insig = "blank")
+```
+
+
+The correlation coefficient between hu_str1_diff_2nd and Cs_avg *r* = .049 which is a medium positive relation.
+
+
+### Correction of the multiple comparisons
+
+
+To control the false discovery rate because of the multiple comparisons the Bonferroni correction and the Benjamini-Hochberg method were conducted. The results are in the further table. If the raw p values and the corrected ones were matched by me,none of the correlation of our interest stayed significant, so by these robust analysis weren't found any significant relationship between the MMN and the EF variables. 
+
+For this method the p_matrix was cutted two half, and the p values were ordered.
+
+
+```{r correction, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+half_matrix <- as.dist(p_matrix) # cutted the p matrix
+p_values <- as.vector(half_matrix) 
+n <- length(p_values) # set n as variable of lenght of p-values
+correction <- as.data.frame(p_values)
+p_values = correction[order(correction$p_values),] # ordering the p values
+correctionData <- as.data.frame(p_values) # save the sting of p values as data frame
+                            
+                            
+correctionData$Bonferroni = 
+      p.adjust(correctionData$p_values, 
+                    method = "bonferroni") # running Bonferroni correction and save the corrected p values  as bonferroni
+                          
+correctionData$BH = 
+    p.adjust(correctionData$p_values, 
+                   method = "BH") # running benjamini Hochber fdr correction and save the corrected p values  as BH
+
+knitr::kable(correctionData, "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F) # set the results in a table
+
+```  
+
+  
+To show visually how the corrections work in this case a plot was created, which shows the robust of the correction and how changed the boundaries of the acceptable significance level. 
+
+
+```{r correction figure, warning=FALSE, error=FALSE, message=FALSE,comment=FALSE}
+#creating two variables for plotting the correction plot
+J = correctionData$p_values
+K = cbind(correctionData$Bonferroni,
+          correctionData$BH) 
+  
+                            
+matplot(K, J,
+   xlab="Raw p-value",
+   ylab="Adjusted p-value",
+   type="l",
+   asp=1,
+   col=1:6,
+   lty=1,
+   lwd=2) 
+                            
+legend('bottomright', 
+   legend = c("Bonferroni", "BH"), 
+      col = 1:6, 
+      cex = 1,    
+      pch = 16) 
+                
+abline(0, 1,
+     col=1,
+     lty=2,
+     lwd=1)
+```    
+  
+
+## Linear Regression Model 
+
+After the correlation analysis I'd like to explore  the models which could describe more succesfully the MMN variables that is why I conducted the linear regression analysis. I built two models with the entered method, so I entered all off the predictor variables to the analysis and try to predict the MMN variables separately. 
+
+Previously in the correlation analysis section I used all of the variables to explore the possible relationships so with that I checked one of the linear regression assumption which is multicollinearity. I found some correlation between the variables which means that the dataset violated one of the assumption. The main reason of the correlation between the EF variables because they came from the same test, but because of it it causes assumption violation. 
+
+I checked the linearity between the predictors and the predicted variables, but I found linearity only at the case of hu_str1_diff_2nd and Cs_avg, that is why I plotted only this relationship. This is an other violation of the assumptions.
+
+
+```{r, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+#checking the linearity
+data %>% 
+  ggplot() +
+  aes(y = hu_str1_diff_2nd, x = Cs_avg) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) 
+
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str1_diff_2nd, x = Pr) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str1_diff_2nd, x = fluency) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str1_diff_2nd, x = avg_groupsize) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str1_diff_2nd, x =avg_clustswitch) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str1_diff_2nd, x = avg_sharpswitch) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str1_diff_2nd, x = avg_groupnumb) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# # check the linearity between the variables for str2
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str2_diff_2nd, x = Cs_avg) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str2_diff_2nd, x = Pr) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str2_diff_2nd, x = fluency) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str2_diff_2nd, x = avg_groupsize) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str2_diff_2nd, x =avg_clustswitch) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str2_diff_2nd, x = avg_sharpswitch) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) 
+# 
+# data %>% 
+#   ggplot() +
+#   aes(y = hu_str2_diff_2nd, x = avg_groupnumb) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE)
+
+```   
+
+
+Beside of the violations just for exploration, I ran the linear regression analysis of the two separate model, these are the results:
+
+```{r,warning=FALSE, error=FALSE,}
+# Linear Regression Models
+# Model for hu_srt1_diff_2nd
+lm1 <- lm( hu_str1_diff_2nd ~ Cs_avg+ avg_clustswitch + avg_groupsize + avg_groupnumb+ Pr+avg_sharpswitch+fluency, data = data)
+summary(lm1) 
+```
+
+
+As you can see, only the Cs_avg variable shows significant relation to the predicted variable which was found by me previously by correlation analysis without correction so no new information was occured by linear regression.
+
+
+Just in case I checked the assumptions of residuals with the help of a plot:
+
+```{r}
+#cheking the assumptions with a plot
+autoplot(lm1, which = 1:6, label.size = 3)
+```  
+
+  
+Based on this plot I'd say that the residuals don't differ from the normal distribution and the residuals are independent of the predictor levels. 
+
+
+The second model for hu_str2_diff_2nd: 
+  
+```{r, warning=FALSE, error=FALSE}
+# Model for hu_srt2_diff_2nd
+lm2 <- lm( hu_str2_diff_2nd ~ Cs_avg+ avg_clustswitch + avg_groupsize + avg_groupnumb+ Pr+avg_sharpswitch+fluency, data = data)
+summary(lm2)
+
+```
+
+```{r, warning=FALSE, error=FALSE,message=FALSE,comment=FALSE}
+#cheking the assumptions with a plot
+autoplot(lm2, which = 1:6, label.size = 3)
+```
+
+  
+This model didn't ended in significant results.
+
+In conclusion, the linear regression didn't provided more information about the possible associastions, but we can see that using correction and the variability of assumptions could effect our result from what we publicate and the question is, which results could be called reliable?
+
+
+
+## Permutation based statistic for correlation coefficients
+
+After the linear regression analysis it is look like that there is some kind of relationship between the MMN effect of Hungarian S1 stimuli and the working memory capacity, that is why I was interested in other statistical tests which coul test the reliability of this relationship. That is why I conducted a permutation based analysis of the correlation coefficients. 
+It controls the family-wise error rate by using the *“max statistic”* method for adjusting the *p* values in the case of multiple comparisons. I entered the seven EF variables into the analysis as one family, and the two MMN variables as a different family.  This analysis is based on the assumption that if the data came from the same population of individuals, the values of the observations would be exchangeable.In this study, 10000 (*p* < .01) permutations were used (Groppe et al., 2011).
+
+
+```{r permutation, warning=FALSE, error=FALSE,message=FALSE, eval=FALSE, echo=FALSE}
+# conducted a permutation analysis with 10000 permutation
+for (i in 2:3) {
+  x = data[,i]
+  for (k in 1:7){
+    y =  data[,k+3]
+    perm.cor.test(x, y, nperm = 10000,"two.sided", progress = TRUE) 
+  }
+}
+# You have to use the print function to see the results, but because of the space I don't use it. I can' save the result just in pdf so i created two seperately datasets for the two MMN variables.
+```
+ 
+  
+After running the permutation statistics I created two datasets from the results (because of some troubles with the function(saving problems)). The next two tables show the *p* values of the results of the 10000 permutation.
+
+Permutation analysis results: hu_str1_diff_2nd *p* values
+```{r table HU1, message=FALSE, warnings=FALSE, results='asis'}
+# plotting p values of the results of permutation analysis
+perm_data1 <- read.csv("results_str1.csv")
+knitr::kable(perm_data1, "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+
+```  
+
+Permutation analysis results: hu_str2_diff_2nd *p* values
+```{r table HU2,  message=FALSE, warnings=FALSE, results='asis'}
+# plotting p values of the results of permutation analysis
+perm_data2 <- read.csv("result_str2.csv")
+knitr::kable(perm_data2, "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+```
+
+
+The permutation-based correlation analysis yielded a significant positive relation between the MMN effect for HU S1 stimuli and working memory capacity, *r* = .489, *p* = .004.
+
+
+## Conclusion
+
+After exploring with three different analysis one "reliable" result was found: participants who had lower working memory capacity expressed a more negative MMN amplitude, which is an unusual response for the legal stimuli, based on previous studies.

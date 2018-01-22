@@ -1,0 +1,5 @@
+"0","corrplot(newres$r, method = c(""square""), "
+"0","         order=""original"", "
+"0","         hclust.method = ""average"", addrect = 6, rect.col = ""black"", rect.lwd = 1, "
+"0","         type=""upper"", diag = F, tl.col = ""black"", tl.srt = 45,"
+"0","         p.mat = newres$P, sig.level = 0.05, insig = ""blank"")"

@@ -1,0 +1,9 @@
+"0","library(psych)
+library(Hmisc)
+library(psych)
+library(Hmisc)
+descriptive <- describe(data)
+"
+"2","Error in x[present, drop = FALSE] : 
+  object of type 'closure' is not subsettable
+"

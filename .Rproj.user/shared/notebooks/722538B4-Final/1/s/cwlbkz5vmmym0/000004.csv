@@ -1,0 +1,48 @@
+"0","knitr::kable(lres, ""html"") %>%
+  kable_styling(bootstrap_options = ""striped"", full_width = T)
+"
+"1","<table class=""table table-striped"" style=""margin-left: auto; margin-right: auto;"">
+ <thead>
+  <tr>
+   <th style=""text-align:left;"">   </th>
+   <th style=""text-align:left;""> id </th>
+   <th style=""text-align:left;""> hu_str1_diff_2nd </th>
+   <th style=""text-align:left;""> hu_str2_diff_2nd </th>
+   <th style=""text-align:left;""> Cs_avg </th>
+   <th style=""text-align:left;""> Pr </th>
+   <th style=""text-align:left;""> fluency </th>
+   <th style=""text-align:left;""> avg_groupsize </th>
+   <th style=""text-align:left;""> avg_clustswitch </th>
+   <th style=""text-align:left;""> avg_sharpswitch </th>
+   <th style=""text-align:left;""> avg_groupnumb </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:left;""> statistic </td>
+   <td style=""text-align:left;""> 0.9574506 </td>
+   <td style=""text-align:left;""> 0.9634672 </td>
+   <td style=""text-align:left;""> 0.9373177 </td>
+   <td style=""text-align:left;""> 0.9622084 </td>
+   <td style=""text-align:left;""> 0.9280077 </td>
+   <td style=""text-align:left;""> 0.9597635 </td>
+   <td style=""text-align:left;""> 0.9809301 </td>
+   <td style=""text-align:left;""> 0.9579807 </td>
+   <td style=""text-align:left;""> 0.9490461 </td>
+   <td style=""text-align:left;""> 0.9714581 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> p.value </td>
+   <td style=""text-align:left;""> 0.2662327 </td>
+   <td style=""text-align:left;""> 0.3786561 </td>
+   <td style=""text-align:left;""> 0.07703453 </td>
+   <td style=""text-align:left;""> 0.3523233 </td>
+   <td style=""text-align:left;""> 0.04348136 </td>
+   <td style=""text-align:left;""> 0.3054884 </td>
+   <td style=""text-align:left;""> 0.8497136 </td>
+   <td style=""text-align:left;""> 0.2748124 </td>
+   <td style=""text-align:left;""> 0.1593913 </td>
+   <td style=""text-align:left;""> 0.5797995 </td>
+  </tr>
+</tbody>
+</table>"

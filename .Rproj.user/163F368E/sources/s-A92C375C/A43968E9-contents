@@ -1,0 +1,67 @@
+
+setwd("c:/Users/Bori/Desktop/R programozás/final") # i had to change the work directory
+data <- read.csv("data.csv")
+install.packages('contrib.url')
+install.packages("stringr")
+install.packages("checkpoint")
+library(knitr)
+install.packages('xtable')
+library(xtable)
+
+
+  
+install.packages("forecast", repos = "http://cran.us.r-project.org")
+
+
+library(magrittr)
+library(tidyverse) 
+install.packages('psych')
+library(psych)
+# Exploratory analysis 
+
+descriptive<- describe(data)
+
+
+attach(data) 
+
+par(mfrow= c(3,2)) 
+hist(hu_str1_diff_2nd) 
+hist(hu_str2_diff_2nd) 
+boxplot(hu_str1_diff_2nd)
+boxplot(hu_str2_diff_2nd) 
+plot(hu_str1_diff_2nd) 
+plot(hu_str2_diff_2nd) 
+
+par(mfrow= c(3,7)) 
+hist(avg_groupsize) 
+hist(avg_clustswitch)
+hist(avg_sharpswitch) 
+hist(avg_groupnumb)
+hist(Cs_avg) 
+hist(Pr) 
+hist(fluency) 
+boxplot(avg_groupsize) 
+boxplot(avg_clustswitch)
+boxplot(avg_sharpswitch)
+boxplot(avg_groupnumb)
+boxplot(Cs_avg) 
+boxplot(Pr)
+boxplot(fluency)
+plot(avg_groupsize) 
+plot(avg_clustswitch)
+plot(avg_sharpswitch)
+plot(avg_groupnumb)
+plot(Cs_avg) 
+plot(Pr)
+plot(fluency)
+
+dev.off()
+
+#normality check
+library(car)
+
+lshap <- lapply(data, shapiro.test)
+lres <- sapply(lshap, `[`, c("statistic","p.value"))
+shapiro_results <- as.data.frame(lres)
+
+install.packages("kableExtra")

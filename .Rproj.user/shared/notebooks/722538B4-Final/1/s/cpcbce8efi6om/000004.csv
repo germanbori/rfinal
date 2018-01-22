@@ -1,0 +1,152 @@
+"0","knitr::kable(p_matrix, ""html"") %>%
+  kable_styling(bootstrap_options = ""striped"", full_width = F)
+"
+"1","<table class=""table table-striped"" style=""width: auto !important; margin-left: auto; margin-right: auto;"">
+ <thead>
+  <tr>
+   <th style=""text-align:left;"">   </th>
+   <th style=""text-align:right;""> id </th>
+   <th style=""text-align:right;""> hu_str1_diff_2nd </th>
+   <th style=""text-align:right;""> hu_str2_diff_2nd </th>
+   <th style=""text-align:right;""> Cs_avg </th>
+   <th style=""text-align:right;""> Pr </th>
+   <th style=""text-align:right;""> fluency </th>
+   <th style=""text-align:right;""> avg_groupsize </th>
+   <th style=""text-align:right;""> avg_clustswitch </th>
+   <th style=""text-align:right;""> avg_sharpswitch </th>
+   <th style=""text-align:right;""> avg_groupnumb </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:left;""> id </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.7649813 </td>
+   <td style=""text-align:right;""> 0.7564426 </td>
+   <td style=""text-align:right;""> 0.8441110 </td>
+   <td style=""text-align:right;""> 0.1917963 </td>
+   <td style=""text-align:right;""> 0.5605718 </td>
+   <td style=""text-align:right;""> 0.0828998 </td>
+   <td style=""text-align:right;""> 0.4853374 </td>
+   <td style=""text-align:right;""> 0.5209715 </td>
+   <td style=""text-align:right;""> 0.7697169 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> hu_str1_diff_2nd </td>
+   <td style=""text-align:right;""> 0.7649813 </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.2991433 </td>
+   <td style=""text-align:right;""> 0.0061621 </td>
+   <td style=""text-align:right;""> 0.9994341 </td>
+   <td style=""text-align:right;""> 0.8843562 </td>
+   <td style=""text-align:right;""> 0.4541766 </td>
+   <td style=""text-align:right;""> 0.0994538 </td>
+   <td style=""text-align:right;""> 0.1743477 </td>
+   <td style=""text-align:right;""> 0.1526084 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> hu_str2_diff_2nd </td>
+   <td style=""text-align:right;""> 0.7564426 </td>
+   <td style=""text-align:right;""> 0.2991433 </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.3175587 </td>
+   <td style=""text-align:right;""> 0.1670266 </td>
+   <td style=""text-align:right;""> 0.1952050 </td>
+   <td style=""text-align:right;""> 0.4234325 </td>
+   <td style=""text-align:right;""> 0.2830418 </td>
+   <td style=""text-align:right;""> 0.2871432 </td>
+   <td style=""text-align:right;""> 0.0795173 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> Cs_avg </td>
+   <td style=""text-align:right;""> 0.8441110 </td>
+   <td style=""text-align:right;""> 0.0061621 </td>
+   <td style=""text-align:right;""> 0.3175587 </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.4267310 </td>
+   <td style=""text-align:right;""> 0.2403965 </td>
+   <td style=""text-align:right;""> 0.5188521 </td>
+   <td style=""text-align:right;""> 0.8859152 </td>
+   <td style=""text-align:right;""> 0.3942850 </td>
+   <td style=""text-align:right;""> 0.6707208 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> Pr </td>
+   <td style=""text-align:right;""> 0.1917963 </td>
+   <td style=""text-align:right;""> 0.9994341 </td>
+   <td style=""text-align:right;""> 0.1670266 </td>
+   <td style=""text-align:right;""> 0.4267310 </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.6227656 </td>
+   <td style=""text-align:right;""> 0.5006398 </td>
+   <td style=""text-align:right;""> 0.5113853 </td>
+   <td style=""text-align:right;""> 0.9793702 </td>
+   <td style=""text-align:right;""> 0.5564406 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> fluency </td>
+   <td style=""text-align:right;""> 0.5605718 </td>
+   <td style=""text-align:right;""> 0.8843562 </td>
+   <td style=""text-align:right;""> 0.1952050 </td>
+   <td style=""text-align:right;""> 0.2403965 </td>
+   <td style=""text-align:right;""> 0.6227656 </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.0069606 </td>
+   <td style=""text-align:right;""> 0.0977697 </td>
+   <td style=""text-align:right;""> 0.0424270 </td>
+   <td style=""text-align:right;""> 0.0000636 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> avg_groupsize </td>
+   <td style=""text-align:right;""> 0.0828998 </td>
+   <td style=""text-align:right;""> 0.4541766 </td>
+   <td style=""text-align:right;""> 0.4234325 </td>
+   <td style=""text-align:right;""> 0.5188521 </td>
+   <td style=""text-align:right;""> 0.5006398 </td>
+   <td style=""text-align:right;""> 0.0069606 </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.0951098 </td>
+   <td style=""text-align:right;""> 0.1166338 </td>
+   <td style=""text-align:right;""> 0.0011936 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> avg_clustswitch </td>
+   <td style=""text-align:right;""> 0.4853374 </td>
+   <td style=""text-align:right;""> 0.0994538 </td>
+   <td style=""text-align:right;""> 0.2830418 </td>
+   <td style=""text-align:right;""> 0.8859152 </td>
+   <td style=""text-align:right;""> 0.5113853 </td>
+   <td style=""text-align:right;""> 0.0977697 </td>
+   <td style=""text-align:right;""> 0.0951098 </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.0005177 </td>
+   <td style=""text-align:right;""> 0.0000008 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> avg_sharpswitch </td>
+   <td style=""text-align:right;""> 0.5209715 </td>
+   <td style=""text-align:right;""> 0.1743477 </td>
+   <td style=""text-align:right;""> 0.2871432 </td>
+   <td style=""text-align:right;""> 0.3942850 </td>
+   <td style=""text-align:right;""> 0.9793702 </td>
+   <td style=""text-align:right;""> 0.0424270 </td>
+   <td style=""text-align:right;""> 0.1166338 </td>
+   <td style=""text-align:right;""> 0.0005177 </td>
+   <td style=""text-align:right;""> NA </td>
+   <td style=""text-align:right;""> 0.1433134 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> avg_groupnumb </td>
+   <td style=""text-align:right;""> 0.7697169 </td>
+   <td style=""text-align:right;""> 0.1526084 </td>
+   <td style=""text-align:right;""> 0.0795173 </td>
+   <td style=""text-align:right;""> 0.6707208 </td>
+   <td style=""text-align:right;""> 0.5564406 </td>
+   <td style=""text-align:right;""> 0.0000636 </td>
+   <td style=""text-align:right;""> 0.0011936 </td>
+   <td style=""text-align:right;""> 0.0000008 </td>
+   <td style=""text-align:right;""> 0.1433134 </td>
+   <td style=""text-align:right;""> NA </td>
+  </tr>
+</tbody>
+</table>"
